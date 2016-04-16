@@ -1,0 +1,15 @@
+table= [ [ 0 for i in range(180) ] for j in range(90) ]
+
+for d1 in range(90):
+    for d2 in range(180):
+        table[d1][d2]= []
+table[50][140].append("NYC")
+'''for row in table:
+   #  Loop over columns.
+    for column in row:
+        print(column, end="")
+    print(end="\n")'''
+
+nearest_20 = lambda x: (1 + (x-1)/20)*20 if x % 20 >= 10 else (x/20)*2
+
+print (round(102,-2))
