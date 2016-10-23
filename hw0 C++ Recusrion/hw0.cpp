@@ -2,16 +2,7 @@
 #include <iostream>
 using namespace std; 
 
-int countCharOnEven(std::string phrase, char letter){
-    int a = 0;
-    for(int i = 0; i<phrase.length(); i++){
-        if(phrase.at(i) == letter && i%2 == 0){
-        	a++;
-        }
-    }
-    
-    return a;
-}
+
 
 
 int computeFibonacci(int number){
