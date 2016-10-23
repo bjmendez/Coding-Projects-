@@ -11,3 +11,5 @@ HW 2 description http://www.cse.buffalo.edu/~hartloff/CSE250/?homework/hw2.html
 HW 3 description http://www.cse.buffalo.edu/~hartloff/CSE250/?homework/hw3.html
 
 HW 4 description http://www.cse.buffalo.edu/~hartloff/CSE250/?homework/hw4.html
+
+HW 5 description http://www.cse.buffalo.edu/~hartloff/CSE250/?homework/hw5.html
