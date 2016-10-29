@@ -72,7 +72,7 @@ def combine_files(src_directory):
     all_data.reset_index(drop=True)
 
     return all_data
-
+#Method for dropping duplicates in dataframe based on x parameters 
 def dedup(df):
     df.drop_duplicates(subset=['Address 1', 'Address 2', 'City', 'State', 'Zipcode'])
 
