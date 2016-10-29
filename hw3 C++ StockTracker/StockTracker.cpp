@@ -2,7 +2,7 @@
 
 StockTracker::StockTracker(){}
 
-
+//Comments in .h 
 void StockTracker::registerTicker(string tickerSymbol, int sharesOutstanding){
     stock.insert ( pair<string,int>(tickerSymbol,sharesOutstanding) );
 }
