@@ -8,6 +8,7 @@ FireworkFactory::FireworkFactory(){
 void FireworkFactory::fireworkShipment(stack<Firework*>& fireworkShipment){
 	 
 	while(!fireworkShipment.empty()){
+	   // Add fireworks to their respective color queues by keep track of their age using i and the queue for their order
 	   if(fireworkShipment.top()->getColor() == Orange){
             orange.push(fireworkShipment.top());
             orangeorder.push(i);
@@ -34,7 +35,7 @@ void FireworkFactory::fireworkShipment(stack<Firework*>& fireworkShipment){
 
 // Sell quantity fireworks by pushing them onto the customerStack with the oldest fireworks being sold first (FIFO).
 void FireworkFactory::sellFireworks(stack<Firework*>& customerStack, int quantity){
-    
+   // To sell the oldest firework of all the color queues we just look at the lowest number in the front of the queue
    while(quantity > 0){
         if(orangeorder.front() < greenorder.front() && orangeorder.front() < blueorder.front() && orangeorder.front() <purpleorder.front()){
     	   customerStack.push(orange.front());
@@ -91,7 +92,7 @@ FireworkFactory::~FireworkFactory(){
 // the firework.
 void FireworkFactory::metalShipment(stack<Metal>& metalShipment){
     // TODO
-    
+    //If the top of a metalshipment equals a certain metal increment its counter and when it reaches 5 make a new firework of that color
     while(!metalShipment.empty()){
     
         if(metalShipment.top()  == CalciumChloride){
@@ -151,7 +152,8 @@ void FireworkFactory::metalShipment(stack<Metal>& metalShipment){
 // For the efficient point of this assignment, this function must run in O(quantity) time. If only 1 firework is being
 // purchased, the runtime must be O(1) regardless of where the firework to be sold is in the inventory.
 void FireworkFactory::sellFireworks(stack<Firework*>& customerStack, int quantity, Color color){
-   
+   //All fireworks have their respective color queues so getting them in O(1) just involves popping the front.
+   // Order is maintained by also pushing the queue keeping order so that we know that firework is gone if we wanted to sell by oldest again	
     while(quantity > 0){
         if(orange.front()->getColor() == color){
             quantity--;
