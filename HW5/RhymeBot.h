@@ -21,12 +21,12 @@
 
 using namespace std;
 
-
+//TrieNode class for the Nodes in the Trie
 class TrieNode {
 public:
     
   TrieNode() {
-        
+    //Node for every letter of the alphabet     
     for (int i=0;i<26;i++){
         child[i] = NULL;
     }
@@ -37,7 +37,9 @@ public:
     bool isWord;
     //int value;
 };
- 
+
+
+//Trie made up TrienODES
 class Trie {
 public:
     Trie() {
@@ -45,7 +47,9 @@ public:
         
     }
  
-    
+    //Insert method for putting a a word based on its prounaction into the Trie and the actual word. 
+    // I.E string s would be K AH0 M P Y UW1 T ER0 and the word would be COMPUTER  
+    // Marking the leaf as being the end of the word and holding the actual word 	
     void insert(string s,string word) {
         TrieNode *node = root;
         int length = s.size();
@@ -71,7 +75,7 @@ public:
         node->isString = word;
     }
     
-
+    //Method for finding the top matching strings starting from a node 
     void findStrings(TrieNode *node,int top){
     	
     	
@@ -113,13 +117,14 @@ public:
        		x++;
        	}			
     }*/
-
+    //Method for finding all words 
     void allwords(){
       TrieNode *node = root;
       findStrings(root,1000000);
       //cout << y <<endl;
     }
-
+    //Method for finding rhymthing words
+    // Prefix is the word we want to rhyme with and top is the integer of how many rhymes we are trying to find for that word 
     void startsWith(string prefix,int top) {
         TrieNode *node = root;
         
@@ -172,7 +177,7 @@ private:
 };
 
 
-
+//Class that implements the Trie and TrieNodes and will handle the rhyming and parsing of files 
 class RhymeBot {
 private:
 	
