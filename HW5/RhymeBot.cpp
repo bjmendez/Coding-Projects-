@@ -8,7 +8,7 @@ RhymeBot::RhymeBot(int argc, char *argv[]){
 }
 
 
-
+//Parse the words dictionary into a map of key word and value pronuncation 
 unordered_map<string, string> RhymeBot::parseDictionary(char *argv[1]){
     
 	string filename = argv[1];
@@ -53,7 +53,7 @@ unordered_map<string, string> RhymeBot::parseDictionary(char *argv[1]){
 
 }
 
-
+// Serilzation for quicker setup of all sentences from sentence list
 void RhymeBot::parsePhrases(char *argv[2]){
 	string file1 = "saved1.txt";
     ofstream outputStream1(file1, ios::out | ios::binary);
@@ -271,7 +271,7 @@ void RhymeBot::parsePhrases(char *argv[2]){
     outputStream25.close();
     outputStream26.close(); 
 }
-
+//Load from file to save time from looking through whole list and only look at sentences you know will rhyme
 void RhymeBot::Loadfromfile(char c){
     string word;
     string proncuation;
@@ -695,7 +695,7 @@ void RhymeBot::Loadfromfile(char c){
     
 
 }
-
+// Main method for finding top rhyme 
 void RhymeBot::TopRhyme(char *argv[]) {
 
 	vector<string> words;
