@@ -8,13 +8,15 @@
 #include "Firework.h"
 
 class FireworkFactory {
-
+//Instance variables
 private:
-    queue<Firework*> inventory; 
+    queue<Firework*> inventory;
+    //A queue for every color allows for a spefific color to be sold in O(1)
     queue<Firework*> orange;
     queue<Firework*> green;
     queue<Firework*> blue;
     queue<Firework*> purple;
+    //A queue for order of when each firework came in allows for them to be sold by their age by just looking at the front of the queue to see which is the oldest
     queue<int> orangeorder;
     queue<int> greenorder; 
     queue<int> blueorder;
