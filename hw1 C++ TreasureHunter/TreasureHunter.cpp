@@ -220,6 +220,7 @@ int TreasureHunter::computeScore(std::string inputString){
             break; 
             }   
         }
+        //game over
         if(score == 0 || score < 0){
             return 0;
             break; 
