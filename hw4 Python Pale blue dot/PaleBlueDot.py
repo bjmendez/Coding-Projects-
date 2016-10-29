@@ -10,9 +10,6 @@ import itertools
 
 
 # Location class used to communicate lat/long
-
-
-
 class Location:
     # Do not put member variable outside the constructor
     # Variables declared here become static class variables
@@ -69,10 +66,12 @@ class PaleBlueDot:
             lines = re.split(',|\n',line)
             latitude = round(float(lines[3]))
             longtitude = round(float(lines[4]))
+            #Have to be able to quickly look up locations so round the lat and longs to create large buckets for us to search as oppossed to searching all cities
             self.locations[(latitude,longtitude)].append(Location(float(lines[3]),float(lines[4])))
             self.cityLocations[(lines[1],lines[2],lines[0])] =  lines[3:5]
             self.locat[Location(float(lines[3]),float(lines[4]))] = [lines[1],lines[2],lines[0]]
 
+            
 
 
         cities.close()
@@ -89,6 +88,7 @@ class PaleBlueDot:
         for line in observatories.split("\n"):
             # TODO
             if(line[4:13] != "0.00000" and line[0:4] != "Code" and line[4:13] != '         ' and line[13:21] != '' and line[21:30] != ''):
+                #haversine formula 
                 cos = float(line[13:21])
                 sin = float(line[21:30])
                 Latitude = repr(math.degrees(math.atan2(sin,cos)))
@@ -106,7 +106,7 @@ class PaleBlueDot:
     '''
 
     def getCityLocation(self, city, region, country):
-
+        
         if(city,region,country in self.cityLocations):
             locat = Location(float(self.cityLocations[(city,region,country)][0]),float(self.cityLocations[(city,region,country)][1]))
             return locat
@@ -222,7 +222,8 @@ class PaleBlueDot:
        j = 1
 
 
-
+        # These if statements are edge cases for the north and south poles. Lat and Long converge at those points making the buckets similar
+        # Which in turn makes us have to do more checking
 
        if (   83<= round(location.getLatitude()) <= 88)   and ( 145<= round(location.getLongitude()) <=150 ):
 
@@ -478,7 +479,7 @@ class PaleBlueDot:
 
 
 
-
+        #General case which works for most inputs
        if closest == Location(999,999):
            A = (-110,-109,-108,-107,-106,-105,-104,-103,-102,-101,-100,-99,-98,-97,-96,-95,-94,-93,-92,-91,-90,-89,-88,-87,-86,-85,-84,-83,-82,-81,-80,-79,-78,-77,-76,-75,-74,-73,-72,-71,-70,-69,-68,-67,-66,-65,-64,-63,-62,-61,-60,-59,-58,-57,-56,-55,-54,-53,-52,-51,-50,-49,-48,-47,-46,-45,-44,-43,-42,-41,-40,-39,-35,-34,-33,-32,-31,-30,-29,-28,-27,-26,-25,-24,-23,-22,-21,-20,-19,-18,-17-16,-15,-14,-13,-12,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110)
            B = (-20,-19,-18,-17-16,-15,-14,-13,-12,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25)
